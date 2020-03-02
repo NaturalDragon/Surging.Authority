@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.KestrelHttpServer\Surging.Core.KestrelHttpServer.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Protocol.Http\Surging.Core.Protocol.Http.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Protocol.Mqtt\Surging.Core.Protocol.Mqtt.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Protocol.Udp\Surging.Core.Protocol.Udp.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.System\Surging.Core.System.csproj" />
+    <ProjectReference Include="..\..\01.Infrastructure\MicroService.Common\MicroService.Common.csproj" />
+    <ProjectReference Include="..\..\01.Infrastructure\MicroService.Core\MicroService.Core.csproj" />
+    <ProjectReference Include="..\..\01.Infrastructure\MicroService.EntityFramwork.SqlServer\MicroService.EntityFramwork.SqlServer.csproj" />
+    <ProjectReference Include="..\..\01.Infrastructure\MicroService.EntityFramwork\MicroService.EntityFramwork.csproj" />
+    <ProjectReference Include="..\..\01.Infrastructure\MicroService.FuseStrategy\MicroService.FuseStrategy.csproj" />
+    <ProjectReference Include="..\..\03.Application\MicroService.IApplication.Authority\MicroService.IApplication.Authority.csproj" />
+  </ItemGroup>
+
+</Project>

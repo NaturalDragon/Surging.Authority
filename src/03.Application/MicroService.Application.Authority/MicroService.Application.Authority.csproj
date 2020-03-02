@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\01.Infrastructure\MicroService.Core\MicroService.Core.csproj" />
+    <ProjectReference Include="..\..\02.Domain\MicroService.IRespository.Authority\MicroService.IRespository.Authority.csproj" />
+    <ProjectReference Include="..\MicroService.IApplication.Authority\MicroService.IApplication.Authority.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validators\" />
+    <Folder Include="ValidatorsFilters\" />
+  </ItemGroup>
+
+</Project>

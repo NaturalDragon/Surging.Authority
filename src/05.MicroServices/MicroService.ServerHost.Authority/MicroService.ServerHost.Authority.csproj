@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Caching\Surging.Core.Caching.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Codec.MessagePack\Surging.Core.Codec.MessagePack.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Common\Surging.Core.Common.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Consul\Surging.Core.Consul.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.CPlatform\Surging.Core.CPlatform.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.DNS\Surging.Core.DNS.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.DotNettyWSServer\Surging.Core.DotNettyWSServer.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.DotNetty\Surging.Core.DotNetty.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.EventBusKafka\Surging.Core.EventBusKafka.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.EventBusRabbitMQ\Surging.Core.EventBusRabbitMQ.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.KestrelHttpServer\Surging.Core.KestrelHttpServer.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Log4net\Surging.Core.Log4net.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.NLog\Surging.Core.Nlog.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Protocol.Http\Surging.Core.Protocol.Http.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Protocol.Mqtt\Surging.Core.Protocol.Mqtt.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Protocol.Udp\Surging.Core.Protocol.Udp.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Protocol.WS\Surging.Core.Protocol.WS.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.ProxyGenerator\Surging.Core.ProxyGenerator.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.ServiceHosting\Surging.Core.ServiceHosting.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Swagger\Surging.Core.Swagger.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.System\Surging.Core.System.csproj" />
+    <ProjectReference Include="..\..\00.Surging.Core\Surging.Core.Zookeeper\Surging.Core.Zookeeper.csproj" />
+    <ProjectReference Include="..\..\01.Infrastructure\MicroService.EntityFramwork\MicroService.EntityFramwork.csproj" />
+    <ProjectReference Include="..\..\02.Domain\MicroService.Entity.Authority\MicroService.Entity.Authority.csproj" />
+    <ProjectReference Include="..\..\02.Domain\MicroService.IRespository.Authority\MicroService.IRespository.Authority.csproj" />
+    <ProjectReference Include="..\..\02.Domain\MicroService.Respository.Authority\MicroService.Respository.Authority.csproj" />
+    <ProjectReference Include="..\..\03.Application\MicroService.Application.Authority\MicroService.Application.Authority.csproj" />
+    <ProjectReference Include="..\..\03.Application\MicroService.IApplication.Authority\MicroService.IApplication.Authority.csproj" />
+    <ProjectReference Include="..\..\04.Modules\MicroService.IModules.Authority\MicroService.IModules.Authority.csproj" />
+    <ProjectReference Include="..\..\04.Modules\MicroService.Modules.Authority\MicroService.Modules.Authority.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.debug.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.release.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="cacheSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Configs\consul.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Configs\Zookeeper.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="eventBusSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="surgingSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,8 @@
+{
+  "EventBusConnection": "${EventBusConnection}|112.124.28.53",
+
+  "VirtualHost": "/",
+  "BrokerName": "surging_demo",
+  "Port": "5672"
+}
+

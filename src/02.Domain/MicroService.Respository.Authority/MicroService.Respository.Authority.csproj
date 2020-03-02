@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\01.Infrastructure\MicroService.EntityFramwork\MicroService.EntityFramwork.csproj" />
+    <ProjectReference Include="..\MicroService.Entity.Authority\MicroService.Entity.Authority.csproj" />
+    <ProjectReference Include="..\MicroService.IRespository.Authority\MicroService.IRespository.Authority.csproj" />
+  </ItemGroup>
+
+</Project>
