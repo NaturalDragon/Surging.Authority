@@ -186,7 +186,7 @@ using MicroService.Application.Authority.ValidatorsFilters;
         /// <returns></returns>
        public async Task<bool> GetAnyByRoleIdAsync(string roleId)
         {
-            return await _relationEmployeeRoleRespository.Any(r => r.RoleId == roleId && r.IsDelete == false);
+            return await _relationEmployeeRoleRespository.AnyAsync(r => r.RoleId == roleId && r.IsDelete == false);
         }
         /// <summary>
         /// 根据employeeIds获取主键

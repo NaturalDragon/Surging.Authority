@@ -15,9 +15,25 @@ using MicroService.IRespository.Authority;
             RuleSet(ValidatorTypeConstants.Create, () =>
             {
                 BaseValidator();
+                RuleFor(e => e.UserId).Must((e,val) => !employeeRespository.Any(ea => ea.UserId == val))
+                .WithMessage((e, val) => string.Format(ErrorMessage.IsNameRepeat, val));
+                RuleFor(e => e.Name).Must((e, val) => !employeeRespository.Any(ea => ea.Name == val))
+              .WithMessage((e, val) => string.Format(ErrorMessage.IsNameRepeat, val));
+                RuleFor(e => e.Mobile).Must((e, val) => !employeeRespository.Any(ea => ea.Mobile == val))
+              .WithMessage((e, val) => string.Format(ErrorMessage.IsNameRepeat, val));
+                RuleFor(e => e.Email).Must((e, val) => !employeeRespository.Any(ea => ea.Email == val))
+              .WithMessage((e, val) => string.Format(ErrorMessage.IsNameRepeat, val));
             });
             RuleSet(ValidatorTypeConstants.Modify, () =>
             {
+                RuleFor(e => e.UserId).Must((e,val) => !employeeRespository.Any(ea => ea.UserId == val&&ea.Id!=e.Id))
+              .WithMessage((e, val) => string.Format(ErrorMessage.IsNameRepeat, val));
+                RuleFor(e => e.Name).Must((e, val) => !employeeRespository.Any(ea => ea.Name == val&&ea.Id!=e.Id))
+              .WithMessage((e, val) => string.Format(ErrorMessage.IsNameRepeat, val));
+                RuleFor(e => e.Mobile).Must((e, val) => !employeeRespository.Any(ea => ea.Mobile == val&&ea.Id!=e.Id))
+              .WithMessage((e, val) => string.Format(ErrorMessage.IsNameRepeat, val));
+                RuleFor(e => e.Email).Must((e, val) => !employeeRespository.Any(ea => ea.Email == val&&ea.Id!=e.Id))
+               .WithMessage((e, val) => string.Format(ErrorMessage.IsNameRepeat, val));
                 BaseValidator();
             });
 

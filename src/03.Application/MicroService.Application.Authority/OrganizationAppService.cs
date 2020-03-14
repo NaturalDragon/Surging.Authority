@@ -198,7 +198,7 @@ namespace MicroService.Application.Authority
         /// <returns></returns>
         public async Task<bool> GetAnyByParentIdAsync(string organizationId)
         {
-            return await _organizationRespository.Any(o => o.ParentId == organizationId&&o.IsDelete==false);
+            return await _organizationRespository.AnyAsync(o => o.ParentId == organizationId&&o.IsDelete==false);
         }
     }
 }

@@ -11,8 +11,7 @@ namespace MicroService.Data.Constant
 
         public const string IsNameRequired = "名称不能为空";
 
-        public const string IsNameRepeat = "名称已重复";
-
+      
         public const string IsChildNodeExsit = "存在子节点";
 
         public const string IsSortIndexRequired = "排序不能为空";
@@ -62,6 +61,9 @@ namespace MicroService.Data.Constant
         public const string IsGreaterEqualZero = "{0}须大于等于零";
 
         public const string IsRepeat = "{0}已重复";
+
+        public const string IsNameRepeat = "{0}已存在，请勿重复添加";
+
 
         public const string IsRepeated = "已重复";
 

@@ -132,8 +132,9 @@ namespace MicroService.Core
 
         Task<int> ExecuteSqlCommand(string sql, params object[] parameters);
 
+        bool Any(Expression<Func<TEntity, bool>> whereLambda);
+        Task<bool> AnyAsync(Expression<Func<TEntity, bool>> whereLambda);
 
-        Task<bool> Any(Expression<Func<TEntity, bool>> whereLambda);
         #endregion
 
         #region Insert

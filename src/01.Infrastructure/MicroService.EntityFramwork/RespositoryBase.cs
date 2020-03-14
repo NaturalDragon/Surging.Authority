@@ -334,14 +334,24 @@ namespace MicroService.EntityFramwork
             var _dbContext = GetDbContext();
             return await _dbContext.Database.ExecuteSqlCommandAsync(sql, parameters);
         }
-        public async Task<bool> Any(Expression<Func<TEntity, bool>> whereLambda)
+        public bool Any(Expression<Func<TEntity, bool>> whereLambda)
         {
             using (var _dbContext = GetDbContext())
             {
                 var _dbSet = _dbContext.Set<TEntity>();
-                var source = _dbSet.Where(whereLambda);
+                var expression = whereLambda.And(e => e.IsDelete == false);
+                var source = _dbSet.Where(expression);
+                return source.Any();
+            }
+        }
+        public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> whereLambda)
+        {
+            using (var _dbContext = GetDbContext())
+            {
+                var _dbSet = _dbContext.Set<TEntity>();
+                var expression = whereLambda.And(e => e.IsDelete == false);
+                var source = _dbSet.Where(expression);
                 return await source.AnyAsync();
-               
             }
         }
         #endregion

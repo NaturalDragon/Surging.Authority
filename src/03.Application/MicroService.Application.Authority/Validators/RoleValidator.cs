@@ -14,13 +14,17 @@ using MicroService.IRespository.Authority;
         {
             RuleSet(ValidatorTypeConstants.Create, () =>
             {
+                RuleFor(e => e.Name).Must((e, val) => !roleRespository.Any(ea => ea.Name == val))
+                .WithMessage((e, val) => string.Format(ErrorMessage.IsNameRepeat, val));
                 BaseValidator();
             });
             RuleSet(ValidatorTypeConstants.Modify, () =>
             {
+                RuleFor(e => e.Name).Must((e, val) => !roleRespository.Any(ea => ea.Name == val&&ea.Id!=e.Id))
+                 .WithMessage((e, val) => string.Format(ErrorMessage.IsNameRepeat, val));
                 BaseValidator();
             });
-
+           
         }
 
         void BaseValidator()

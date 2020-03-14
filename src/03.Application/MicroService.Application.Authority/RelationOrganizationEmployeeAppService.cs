@@ -189,7 +189,7 @@ using MicroService.Application.Authority.ValidatorsFilters;
         /// <returns></returns>
         public async Task<bool> GetAnyByOrganizationIdAsync(string organizationId)
         {
-            return await _relationOrganizationEmployeeRespository.Any(o => o.IsDelete == false && o.OrganizationId == organizationId);
+            return await _relationOrganizationEmployeeRespository.AnyAsync(o => o.IsDelete == false && o.OrganizationId == organizationId);
         }
 
         /// <summary>
