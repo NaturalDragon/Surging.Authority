@@ -2,49 +2,105 @@
   "Surging": {
     "Ip": "${Surging_Server_IP}|127.0.0.1",
     "WatchInterval": 30,
-    "Port": "${Surging_Server_Port}|96",
+    "Port": "${Surging_Server_Port}|94",
     "MappingIp": "${Mapping_ip}",
     "MappingPort": "${Mapping_Port}",
     "Token": "true",
-    "WanIp": "${Mapping_Port}|192.168.249.103",
+    "WanIp": "${WanIp}|192.168.249.103",
+    "DockerDeployMode": "${DockerDeployMode}|Standard",
     "Libuv": true,
     "SoBacklog": 100,
     "MaxConcurrentRequests": 20,
-    "ExecutionTimeoutInMilliseconds": 120000,
+    "DisconnTimeInterval": 30,
+    "ExecutionTimeoutInMilliseconds": 10000,
     "Protocol": "${Protocol}|None", //Http、Tcp、None
     "RootPath": "${RootPath}|D:\\userapp",
+    "WebRootPath": "${WebRootPath}|D:\\UserApp\\wwwroot",
+    "IsModulePerLifetimeScope": false,
+    "ReloadOnChange": false,
     "Ports": {
       "HttpPort": "${HttpPort}|279",
-      "WSPort": "${WSPort}|94",
-      "MQTTPort": "${MQTTPort}|93"
+      "WSPort": "${WSPort}|92",
+      "MQTTPort": "${MQTTPort}|93",
+      "GrpcPort": "${GrpcPort}|91"
     },
     "RequestCacheEnabled": false,
     "Packages": [
       {
         "TypeName": "EnginePartModule",
-        "Using": "${UseEngineParts}|DotNettyModule;NLogModule;MessagePackModule;ConsulModule;KestrelHttpModule;WSProtocolModule;MqttProtocolModule;EventBusRabbitMQModule;CachingModule;"
+        "Using": "${UseEngineParts}|ServiceProxyModule;DotNettyModule;SerilogModule;NLogModule;MessagePackModule;ConsulModule;WSProtocolModule;MqttProtocolModule;EventBusRabbitMQModule;CachingModule;KestrelHttpModule;DnsProtocolModule;SwaggerModule;ApiGeteWayModule;SkywalkingModule;KestrelNLogModule;KestrelNLogModule;ServiceHostModule;GrpcModule;ApolloModule;"
       }
     ]
   }, //如果引用多个同类型的组件，需要配置Packages，如果是自定义按需引用，无需配置Packages
   "Consul": {
-    "ConnectionString": "${Register_Conn}|127.0.0.1:8500",
+    "ConnectionString": "${Register_Conn}|127.0.0.1:8500", // "127.0.0.1:8500,127.0.0.1:9500",
     "SessionTimeout": "${Register_SessionTimeout}|50",
     "RoutePath": "${Register_RoutePath}",
     "ReloadOnChange": true,
     "EnableChildrenMonitor": false
   },
-  "Swagger": {
-    "Version": "${SwaggerVersion}|V1", // "127.0.0.1:8500",
-    "Title": "${SwaggerTitle}|Surging Demo",
-    "Description": "${SwaggerDes}|surging demo",
-    "Contact": {
-      "Name": "API Support",
-      "Url": "https://github.com/dotnetcore/surging",
-      "Email": "fanliang1@hotmail.com"
+  "Stage": {
+    "EnableHttps": true, // 不设置ports，默认httpsPort:443
+    "CertificateFileName": "${CertificateFileName}|",
+    "CertificateLocation": "${CertificateLocation}|pfxs",
+    "CertificatePassword": "${CertificatePassword}|",
+    "IsCamelCaseResolver": "${IsCamelCaseResolver}|true",
+    "Protocols": "Http1AndHttp2",
+    "ApiGetWay": {
+      "AccessTokenExpireTimeSpan": "30",
+      "AuthorizationRoutePath": "api/user/authentication",
+      "AuthorizationServiceKey": "User",
+      "TokenEndpointPath": "api/oauth2/token",
+      "CacheMode": "MemoryCache" //MemoryCache or  gateway.Redis save token
     },
-    "License": {
-      "Name": "MIT",
-      "Url": "https://github.com/dotnetcore/surging/blob/master/LICENSE"
+    "AccessPolicy": {
+      "Origins": [ "http://127.0.0.1:1927", "http://localhost:927" ],
+      "AllowAnyHeader": true,
+      "AllowAnyMethod": true
+    },
+    "AccessSetting": [
+      {
+        "BlackList": "${blacklist}|127.0.0.1",
+        "Enable": false
+      },
+      {
+        "WhiteList": "${whitelist}|192.168.10.50,192.168.43.0/24,127.0.0.1",
+        "BlackList": "${blacklist}|192.168.2.50,192.168.1.0/16",
+        "RoutePath": "api/user/exists",
+        "Enable": true
+      }
+    ],
+    "HttpsPort": "${StageHttpsPorts}|449,446",
+    "HttpPorts": "${StageHttpPorts}|285,282,283"
+  },
+  "Dns": {
+    "RootDnsAddress": "192.168.1.1",
+    "QueryTimeout": 1000
+  },
+  "Swagger": {
+    "Info": {
+      "Version": "${SwaggerVersion}|V1", // "127.0.0.1:8500",
+      "Title": "${SwaggerTitle}|Surging Demo",
+      "Description": "${SwaggerDes}|surging demo",
+      "Contact": {
+        "Name": "API Support",
+        "Url": "https://github.com/dotnetcore/surging",
+        "Email": "fanliang1@hotmail.com"
+      },
+      "License": {
+        "Name": "MIT",
+        "Url": "https://github.com/dotnetcore/surging/blob/master/LICENSE"
+      }
+    },
+    "Options": {
+      "IgnoreFullyQualified": false,
+      "MapRoutePaths": [
+        {
+          "SourceRoutePath": "api/user/authentication",
+          "TargetRoutePath": "api/oauth2/token"
+        }
+      ]
+      // "IngressName": "Notice"
     }
   },
   "EventBus_Kafka": {
@@ -56,7 +112,7 @@
     "OffsetReset": "${OffsetReset}|earliest",
     "GroupID": "${EventBusGroupID}|surgingdemo"
   },
-  "WebSocket":{
+  "WebSocket": {
     "WaitTime": 2,
     "KeepClean": false,
     "Behavior": {
@@ -65,7 +121,7 @@
     }
   },
   "EventBus": {
-    "EventBusConnection": "${EventBusConnection}|112.74.59.197",
+    "EventBusConnection": "${EventBusConnection}|112.124.28.53",
     "EventBusUserName": "${EventBusUserName}|guest",
     "EventBusPassword": "${EventBusPassword}|guest",
     "VirtualHost": "${VirtualHost}|/",
@@ -77,9 +133,17 @@
     "Port": "${EventBusPort}|5672"
   },
   "Zookeeper": {
-    "ConnectionString": "${Zookeeper_ConnectionString}|127.0.0.1:2181",
+    "ConnectionString": "${Zookeeper_ConnectionString}|127.0.0.1:2181", // "127.0.0.1:2181,127.0.0.1:2281",
     "SessionTimeout": 50,
     "ReloadOnChange": true
+  },
+  "RabbitMQ": {
+    "EventBus": {
+      "ConnectionName": "",
+      "ClientName": "",
+      "ExchangeName": ""
+    }
+
   },
   "Logging": {
     "Debug": {
@@ -95,6 +159,28 @@
     },
     "LogLevel": {
       "Default": "${LogLevel}|Debug"
+    }
+  },
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.RollingFile" ],
+    "LevelSwitches": { "$controlSwitch": "Verbose" },
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        "Microsoft": "Warning",
+        "System": "Warning"
+      }
+    },
+    "WriteTo:RollingFile": {
+      "Name": "RollingFile",
+      "Args": {
+        "formatter": "Serilog.Formatting.Elasticsearch.ElasticsearchJsonFormatter, Serilog.Formatting.Elasticsearch",
+        "pathFormat": "Logs\\log-{Date}.log"
+      }
+    },
+    "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ],
+    "Properties": {
+      "Application": "Sample"
     }
   }
 }

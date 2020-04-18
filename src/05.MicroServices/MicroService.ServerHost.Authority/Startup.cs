@@ -53,8 +53,8 @@ namespace MicroService.ServerHost.Authority
 
         private static void ConfigureEventBus(IConfigurationBuilder build)
         {
-            build
-            .AddEventBusFile("eventBusSettings.json", optional: false);
+            //build
+            //.AddEventBusFile("eventBusSettings.json", optional: false);
         }
 
         /// <summary>

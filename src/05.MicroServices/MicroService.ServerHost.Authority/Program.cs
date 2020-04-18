@@ -1,20 +1,20 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Logging;
+using Surging.Core.Caching.Configurations;
 using Surging.Core.CPlatform;
+using Surging.Core.CPlatform.Configurations;
 using Surging.Core.CPlatform.Utilities;
+//using Surging.Core.EventBusKafka;
 using Surging.Core.ProxyGenerator;
+using Surging.Core.ServiceHosting;
 using Surging.Core.ServiceHosting.Internal.Implementation;
 using System;
+//using Surging.Core.Zookeeper;
+//using Surging.Core.Zookeeper.Configurations;
 using System.Text;
-using Surging.Core;
-using Surging.Core.ServiceHosting;
-using Surging.Core.Caching.Configurations;
-using Surging.Core.CPlatform.Configurations;
-using Surging.Core.System.Intercept;
-
 namespace MicroService.ServerHost.Authority
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -24,12 +24,10 @@ namespace MicroService.ServerHost.Authority
                 {
                     builder.AddMicroService(option =>
                     {
-
                         option.AddServiceRuntime()
                         .AddRelateService()
                         .AddConfigurationWatch()
                         //option.UseZooKeeperManager(new ConfigInfo("127.0.0.1:2181")); 
-                         .AddClientIntercepted(typeof(CacheProviderInterceptor))
                         .AddServiceEngine(typeof(SurgingServiceEngine));
                         builder.Register(p => new CPlatformContainer(ServiceLocator.Current));
                     });

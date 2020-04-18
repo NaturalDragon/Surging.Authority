@@ -38,5 +38,5 @@ namespace Surging.Core.CPlatform.Serialization
         object Deserialize(T content, Type type, bool camelCase = true, bool indented = false);
     }
 
-  
+
 }

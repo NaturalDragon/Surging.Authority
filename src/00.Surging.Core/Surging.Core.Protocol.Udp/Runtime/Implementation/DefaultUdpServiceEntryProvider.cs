@@ -18,7 +18,7 @@ namespace Surging.Core.Protocol.Udp.Runtime.Implementation
         private readonly IEnumerable<Type> _types;
         private readonly ILogger<DefaultUdpServiceEntryProvider> _logger;
         private readonly CPlatformContainer _serviceProvider;
-        private UdpServiceEntry _dnsServiceEntry;
+        private UdpServiceEntry _udpServiceEntry;
 
         #endregion Field
 
@@ -44,24 +44,24 @@ namespace Surging.Core.Protocol.Udp.Runtime.Implementation
         public UdpServiceEntry GetEntry()
         {
             var services = _types.ToArray();
-            if (_dnsServiceEntry == null)
+            if (_udpServiceEntry == null)
             {
-                _dnsServiceEntry = new UdpServiceEntry();
+                _udpServiceEntry = new UdpServiceEntry();
                 foreach (var service in services)
                 {
                     var entry = CreateServiceEntry(service);
                     if (entry != null)
                     {
-                        _dnsServiceEntry = entry;
+                        _udpServiceEntry = entry;
                         break;
                     }
                 }
                 if (_logger.IsEnabled(LogLevel.Debug))
                 {
-                    _logger.LogDebug($"发现了以下Udp服务：{_dnsServiceEntry.Type.FullName}。");
+                    _logger.LogDebug($"发现了以下Udp服务：{_udpServiceEntry.Type.FullName}。");
                 }
             }
-            return _dnsServiceEntry;
+            return _udpServiceEntry;
         }
 
         public UdpServiceEntry CreateServiceEntry(Type service)
